@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\FCFS.cs" />
+    <Compile Include="Miscellaneous\Priority.cs" />
+    <Compile Include="Miscellaneous\Process.cs" />
+    <Compile Include="Miscellaneous\TimeTable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
