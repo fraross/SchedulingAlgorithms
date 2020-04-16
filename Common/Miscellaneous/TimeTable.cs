@@ -2,7 +2,7 @@
 
 namespace SchedulingAlgorithms.Miscellaneous
 {
-    class TimeTable
+    public class TimeTable
     {
         Process _process;
         int _processWaitingTime;

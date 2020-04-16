@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SchedulingAlgorithms.Algorithms
 {
-    static class Priority
+    public static class Priority
     {
         static List<TimeTable> Execute(List<Process> processes)
         {

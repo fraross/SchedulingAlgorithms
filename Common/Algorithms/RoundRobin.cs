@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SchedulingAlgorithms.Algorithms
 {
-    static class RoundRobin
+    public static class RoundRobin
     {
         static List<TimeTable> Execute(List<Process> processes, int quantum)
         {

@@ -8,7 +8,7 @@ using SchedulingAlgorithms.Miscellaneous;
 
 namespace SchedulingAlgorithms.Algorithms
 {
-    static class FCFS
+    public static class FCFS
     {
         static List<TimeTable> Execute(List<Process> process)
         {

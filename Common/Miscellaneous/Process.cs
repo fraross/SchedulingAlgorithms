@@ -2,7 +2,7 @@
 
 namespace SchedulingAlgorithms.Miscellaneous
 {
-    class Process
+    public class Process
     {
         int _processNumber;
         int _cpuBurst;
@@ -45,7 +45,7 @@ namespace SchedulingAlgorithms.Miscellaneous
 
         public int ProcessNumber { get { return this._processNumber; } }
         public int CpuBurst { get { return this._cpuBurst; } set { this._cpuBurst = value; } }
-        public int ArrivalTime { get { return this._arrivalTime; } }
+        public int ArrivalTime { get { return this._arrivalTime; } set { this._arrivalTime = value; } }
         public PriorityEnum PriorityEnum { get { return this._priority; } }
 
         public override string ToString()

@@ -2,7 +2,7 @@
 
 namespace SchedulingAlgorithms.Miscellaneous
 {
-    enum PriorityEnum : int
+    public enum PriorityEnum : int
     {
         Low = 3,
         Normal = 2, 
