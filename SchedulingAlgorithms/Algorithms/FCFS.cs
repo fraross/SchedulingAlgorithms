@@ -18,11 +18,7 @@ namespace SchedulingAlgorithms.Algorithms
 
             for (int i = 1; i < process.Count; i++)
             {
-                int waitingTime = timeTables[i - 1].ProcessWaitingTime;
-                if(i != 1)
-                    timeTables.Add(new TimeTable(process[i], waitingTime + process[i].CpuBurst));
-                else
-                    timeTables.Add(new TimeTable(process[i], process[i - 1].CpuBurst));
+                timeTables.Add(new TimeTable(process[i], process[i - 1].CpuBurst + timeTables[i - 1].ProcessWaitingTime));
             }
 
             return timeTables;

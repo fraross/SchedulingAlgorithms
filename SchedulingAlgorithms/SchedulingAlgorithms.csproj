@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\FCFS.cs" />
+    <Compile Include="Algorithms\SJF.cs" />
     <Compile Include="Miscellaneous\Priority.cs" />
     <Compile Include="Miscellaneous\Process.cs" />
     <Compile Include="Miscellaneous\TimeTable.cs" />

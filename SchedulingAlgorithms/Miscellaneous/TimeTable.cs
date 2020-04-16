@@ -14,7 +14,7 @@ namespace SchedulingAlgorithms.Miscellaneous
         }
 
         public Process Process { get { return this._process; } }
-        public int ProcessWaitingTime { get { return this._processWaitingTime; } }
+        public int ProcessWaitingTime { get { return this._processWaitingTime; } set { this._processWaitingTime = value; } }
 
         public override string ToString()
         {

@@ -13,13 +13,24 @@ namespace SchedulingAlgorithms
     {
         static void Main(string[] args)
         {
-            List<Process> processes = new List<Process>();
+            //FCFS
+            //List<Process> processes = new List<Process>();
 
-            processes.Add(new Process(1, 24));
-            processes.Add(new Process(2, 3));
-            processes.Add(new Process(3, 3));
+            //processes.Add(new Process(1, 10));
+            //processes.Add(new Process(2, 5));
+            //processes.Add(new Process(3, 8));
 
-            Console.WriteLine(FCFS.fromList(processes));
+            //Console.WriteLine(FCFS.fromList(processes));
+
+            //SJF
+            //List<Process> processes = new List<Process>();
+
+            //processes.Add(new Process(1, 6, 1));
+            //processes.Add(new Process(2, 8, 1));
+            //processes.Add(new Process(3, 7, 2));
+            //processes.Add(new Process(4, 3, 3));
+
+            //Console.WriteLine(SJF.fromList(processes));
         }
     }
 }
