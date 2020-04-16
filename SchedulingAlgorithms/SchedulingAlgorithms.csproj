@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\FCFS.cs" />
+    <Compile Include="Algorithms\Priority.cs" />
+    <Compile Include="Algorithms\RoundRobin.cs" />
     <Compile Include="Algorithms\SJF.cs" />
-    <Compile Include="Miscellaneous\Priority.cs" />
+    <Compile Include="Miscellaneous\PriorityEnum.cs" />
     <Compile Include="Miscellaneous\Process.cs" />
     <Compile Include="Miscellaneous\TimeTable.cs" />
     <Compile Include="Program.cs" />

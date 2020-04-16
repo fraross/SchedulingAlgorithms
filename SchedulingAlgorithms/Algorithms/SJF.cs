@@ -8,7 +8,7 @@ using SchedulingAlgorithms.Miscellaneous;
 
 namespace SchedulingAlgorithms.Algorithms
 {
-    class SJF
+    static class SJF
     {
         static List<TimeTable> Execute(List<Process> process)
         {
@@ -70,16 +70,23 @@ namespace SchedulingAlgorithms.Algorithms
                     // process 
                     finish_time = t + 1;
 
-                    // Calculate waiting time 
-                    timeTables[shortest] = new TimeTable(process[shortest], finish_time -
-                                process[shortest].CpuBurst -
-                                process[shortest].ArrivalTime);
+                    // Calculate waiting time
+                    int waitTime = finish_time - process[shortest].CpuBurst - process[shortest].ArrivalTime;
+
+                    // Calculate Turn Around Time
+
+                    timeTables[shortest] = new TimeTable(process[shortest], waitTime, 0);
 
                     if (timeTables[shortest].ProcessWaitingTime < 0)
                         timeTables[shortest].ProcessWaitingTime = 0;
                 }
                 // Increment time 
                 t++;
+            }
+
+            for (int i = 0; i < process.Count; i++)
+            {
+                timeTables[i].TurnAroundTime = process[i].CpuBurst + timeTables[i].ProcessWaitingTime;
             }
 
             return toList(timeTables);

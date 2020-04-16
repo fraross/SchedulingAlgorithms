@@ -31,6 +31,24 @@ namespace SchedulingAlgorithms
             //processes.Add(new Process(4, 3, 3));
 
             //Console.WriteLine(SJF.fromList(processes));
+
+            //Priority
+            //List<Process> processes = new List<Process>();
+
+            //processes.Add(new Process(1, 10, PriorityEnum.Normal));
+            //processes.Add(new Process(2, 5, PriorityEnum.Critical));
+            //processes.Add(new Process(3, 8, PriorityEnum.High));
+
+            //Console.WriteLine(Priority.fromList(processes));
+
+            //Round Robin
+            List<Process> processes = new List<Process>();
+
+            processes.Add(new Process(1, 10, PriorityEnum.Normal));
+            processes.Add(new Process(2, 5, PriorityEnum.Critical));
+            processes.Add(new Process(3, 8, PriorityEnum.High));
+
+            Console.WriteLine(RoundRobin.fromList(processes, 2));
         }
     }
 }
