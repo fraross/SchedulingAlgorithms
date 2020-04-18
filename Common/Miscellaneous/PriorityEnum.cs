@@ -4,9 +4,10 @@ namespace SchedulingAlgorithms.Miscellaneous
 {
     public enum PriorityEnum : int
     {
-        Low = 3,
-        Normal = 2, 
-        High = 1,
-        Critical = 0
+        Priority5 = 5,
+        Low = 4,
+        Normal = 3, 
+        High = 2,
+        Critical = 1
     }
 }

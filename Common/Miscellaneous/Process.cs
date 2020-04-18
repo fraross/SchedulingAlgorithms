@@ -6,24 +6,14 @@ namespace SchedulingAlgorithms.Miscellaneous
     {
         int _processNumber;
         int _cpuBurst;
-        int _arrivalTime;
 
         PriorityEnum _priority;
 
-        //FCFS
+        //FCFS //SJF
         public Process(int processNumber, int cpuBurst)
         {
             this._processNumber = processNumber;
             this._cpuBurst = cpuBurst;
-            this._priority = PriorityEnum.Normal;
-        }
-
-        //SJF
-        public Process(int processNumber, int cpuBurst, int arrivalTime)
-        {
-            this._processNumber = processNumber;
-            this._cpuBurst = cpuBurst;
-            this._arrivalTime = arrivalTime;
             this._priority = PriorityEnum.Normal;
         }
 
@@ -45,7 +35,6 @@ namespace SchedulingAlgorithms.Miscellaneous
 
         public int ProcessNumber { get { return this._processNumber; } }
         public int CpuBurst { get { return this._cpuBurst; } set { this._cpuBurst = value; } }
-        public int ArrivalTime { get { return this._arrivalTime; } set { this._arrivalTime = value; } }
         public PriorityEnum PriorityEnum { get { return this._priority; } }
 
         public override string ToString()

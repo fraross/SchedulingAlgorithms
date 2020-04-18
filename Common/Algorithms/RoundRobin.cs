@@ -85,16 +85,6 @@ namespace SchedulingAlgorithms.Algorithms
             return toList(timeTables);
         }
 
-        static List<TimeTable> findTurnAroundTime(List<Process> processes, List<TimeTable> timeTables)
-        {
-            // calculating turnaround time by adding 
-            // bt[i] + wt[i] 
-            for (int i = 0; i < processes.Count; i++)
-                timeTables[i].TurnAroundTime = processes[i].CpuBurst + timeTables[i].ProcessWaitingTime;
-
-            return timeTables;
-        }
-
         static List<TimeTable> toList(TimeTable[] timeTables)
         {
             List<TimeTable> result = new List<TimeTable>();
@@ -107,16 +97,28 @@ namespace SchedulingAlgorithms.Algorithms
             return result;
         }
 
-        public static string fromList(List<Process> process, int quantum)
+        static List<TimeTable> findTurnAroundTime(List<Process> processes, List<TimeTable> timeTables)
+        {
+            // calculating turnaround time by adding 
+            // bt[i] + wt[i] 
+            for (int i = 0; i < processes.Count; i++)
+                timeTables[i].TurnAroundTime = processes[i].CpuBurst + timeTables[i].ProcessWaitingTime;
+
+            return timeTables;
+        }
+
+        public static string toString(List<TimeTable> timeTables)
         {
             string result = "";
-
-            List<TimeTable> timeTables = Execute(process, quantum);
-            timeTables = findTurnAroundTime(process, timeTables);
 
             timeTables.ForEach(x => result += x.ToString() + "\n");
 
             return result;
+        }
+
+        public static List<TimeTable> fromList(List<Process> process, int quantum)
+        {
+            return findTurnAroundTime(process, Execute(process, quantum));
         }
     }
 }

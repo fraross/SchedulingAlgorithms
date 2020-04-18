@@ -31,15 +31,18 @@ namespace SchedulingAlgorithms.Algorithms
             return timeTables;
         }
 
-        public static string fromList(List<Process> process)
+        public static string toString(List<TimeTable> timeTables)
         {
             string result = "";
-
-            List<TimeTable> timeTables = Execute(process);
 
             timeTables.ForEach(x => result += x.ToString() + "\n");
 
             return result;
+        } 
+
+        public static List<TimeTable> fromList(List<Process> process)
+        {
+            return Execute(process);
         }
     }
 }

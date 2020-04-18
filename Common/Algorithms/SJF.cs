@@ -34,7 +34,7 @@ namespace SchedulingAlgorithms.Algorithms
                 // current time` 
                 for (int j = 0; j < process.Count; j++)
                 {
-                    if ((process[j].ArrivalTime <= t) &&
+                    if ((0 <= t) &&
                     (rt[j] < minm) && rt[j] > 0)
                     {
                         minm = rt[j];
@@ -71,7 +71,7 @@ namespace SchedulingAlgorithms.Algorithms
                     finish_time = t + 1;
 
                     // Calculate waiting time
-                    int waitTime = finish_time - process[shortest].CpuBurst - process[shortest].ArrivalTime;
+                    int waitTime = finish_time - process[shortest].CpuBurst;
 
                     // Calculate Turn Around Time
 
@@ -104,15 +104,18 @@ namespace SchedulingAlgorithms.Algorithms
             return result;
         }
 
-        public static string fromList(List<Process> process)
+        public static string toString(List<TimeTable> timeTables)
         {
             string result = "";
-
-            List<TimeTable> timeTables = Execute(process);
 
             timeTables.ForEach(x => result += x.ToString() + "\n");
 
             return result;
+        }
+
+        public static List<TimeTable> fromList(List<Process> process)
+        {
+            return Execute(process);
         }
     }
 }

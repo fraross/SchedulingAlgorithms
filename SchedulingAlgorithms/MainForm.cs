@@ -48,28 +48,26 @@ namespace SchedulingAlgorithms
             {
                 Process process = new Process(processes.Count + 1, int.Parse(cpuBurst.Text), (PriorityEnum)priority.SelectedItem);
 
-                int arrivalTime;
-                if (int.TryParse(this.arrivalTime.Text, out arrivalTime))
-                    process.ArrivalTime = arrivalTime;
-
                 processes.Add(process);
-                //dataGridViewProcess.Rows.Add(process)
             }
         }
 
         private void fcfs_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(FCFS.fromList(processes.ToList()));
+            var list = FCFS.fromList(processes.ToList());
+            MessageBox.Show(FCFS.toString(list) + "\n\nTempo medio di attesa: " + calcoloMedia(list));
         }
 
         private void sjf_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(SJF.fromList(processes.ToList()));
+            var list = SJF.fromList(processes.ToList());
+            MessageBox.Show(SJF.toString(list) + "\n\nTempo medio di attesa: " + calcoloMedia(list));
         }
 
         private void priorityButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Priority.fromList(processes.ToList()));
+            var list = Priority.fromList(processes.ToList());
+            MessageBox.Show(Priority.toString(list) + "\n\nTempo medio di attesa: " + calcoloMedia(list));
         }
 
         private void roundRobin_Click(object sender, EventArgs e)
@@ -77,9 +75,22 @@ namespace SchedulingAlgorithms
             int quantum;
 
             if (int.TryParse(this.quantum.Text, out quantum))
-                MessageBox.Show(RoundRobin.fromList(processes.ToList(), quantum));
+            {
+                var list = RoundRobin.fromList(processes.ToList(), quantum);
+                MessageBox.Show(RoundRobin.toString(list) + "\n\nTempo medio di attesa: " + calcoloMedia(list));
+            }
             else
                 MessageBox.Show("Parameter missing");
+        }
+
+        private string calcoloMedia(List<TimeTable> timeTables)
+        {
+            return timeTables.Average(x => x.ProcessWaitingTime).ToString();
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            processes.Clear();
         }
     }
 }
