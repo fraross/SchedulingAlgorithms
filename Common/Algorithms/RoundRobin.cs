@@ -13,11 +13,11 @@ namespace SchedulingAlgorithms.Algorithms
         {
             // Make a copy of burst times bt[] to  
             // store remaining burst times. 
-            int[] rem_bt = new int[processes.Count];
+            int[] remaininBursts = new int[processes.Count];
             TimeTable[] timeTables = new TimeTable[processes.Count];
 
             for (int i = 0; i < processes.Count; i++)
-                rem_bt[i] = processes[i].CpuBurst;
+                remaininBursts[i] = processes[i].CpuBurst;
 
             int t = 0; // Current time 
 
@@ -35,13 +35,13 @@ namespace SchedulingAlgorithms.Algorithms
                     // If burst time of a process 
                     // is greater than 0 then only 
                     // need to process further 
-                    if (rem_bt[i] > 0)
+                    if (remaininBursts[i] > 0)
                     {
 
                         // There is a pending process 
                         done = false;
 
-                        if (rem_bt[i] > quantum)
+                        if (remaininBursts[i] > quantum)
                         {
                             // Increase the value of t i.e. 
                             // shows how much time a process 
@@ -50,7 +50,7 @@ namespace SchedulingAlgorithms.Algorithms
 
                             // Decrease the burst_time of  
                             // current process by quantum 
-                            rem_bt[i] -= quantum;
+                            remaininBursts[i] -= quantum;
                         }
 
                         // If burst time is smaller than 
@@ -62,7 +62,7 @@ namespace SchedulingAlgorithms.Algorithms
                             // Increase the value of t i.e. 
                             // shows how much time a process 
                             // has been processed 
-                            t = t + rem_bt[i];
+                            t = t + remaininBursts[i];
 
                             // Waiting time is current 
                             // time minus time used by  
@@ -72,7 +72,7 @@ namespace SchedulingAlgorithms.Algorithms
                             // As the process gets fully  
                             // executed make its remaining 
                             // burst time = 0 
-                            rem_bt[i] = 0;
+                            remaininBursts[i] = 0;
                         }
                     }
                 }
@@ -99,8 +99,6 @@ namespace SchedulingAlgorithms.Algorithms
 
         static List<TimeTable> findTurnAroundTime(List<Process> processes, List<TimeTable> timeTables)
         {
-            // calculating turnaround time by adding 
-            // bt[i] + wt[i] 
             for (int i = 0; i < processes.Count; i++)
                 timeTables[i].TurnAroundTime = processes[i].CpuBurst + timeTables[i].ProcessWaitingTime;
 

@@ -30,6 +30,7 @@
         {
             this.dataGridViewProcess = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.resetButton = new System.Windows.Forms.Button();
             this.addProcess = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,10 +43,13 @@
             this.priorityButton = new System.Windows.Forms.Button();
             this.sjf = new System.Windows.Forms.Button();
             this.fcfs = new System.Windows.Forms.Button();
-            this.resetButton = new System.Windows.Forms.Button();
+            this.dataGridViewResults = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxAvg = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProcess)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewProcess
@@ -55,9 +59,9 @@
             this.dataGridViewProcess.AllowUserToResizeColumns = false;
             this.dataGridViewProcess.AllowUserToResizeRows = false;
             this.dataGridViewProcess.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewProcess.Location = new System.Drawing.Point(12, 249);
+            this.dataGridViewProcess.Location = new System.Drawing.Point(12, 188);
             this.dataGridViewProcess.Name = "dataGridViewProcess";
-            this.dataGridViewProcess.Size = new System.Drawing.Size(760, 300);
+            this.dataGridViewProcess.Size = new System.Drawing.Size(375, 361);
             this.dataGridViewProcess.TabIndex = 0;
             // 
             // groupBox1
@@ -75,6 +79,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Processi";
+            // 
+            // resetButton
+            // 
+            this.resetButton.Location = new System.Drawing.Point(14, 131);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(355, 29);
+            this.resetButton.TabIndex = 14;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // addProcess
             // 
@@ -129,9 +143,9 @@
             this.groupBox2.Controls.Add(this.sjf);
             this.groupBox2.Controls.Add(this.fcfs);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(388, 12);
+            this.groupBox2.Location = new System.Drawing.Point(398, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(375, 231);
+            this.groupBox2.Size = new System.Drawing.Size(375, 215);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Algoritmi";
@@ -139,7 +153,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 164);
+            this.label1.Location = new System.Drawing.Point(6, 144);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 24);
             this.label1.TabIndex = 5;
@@ -147,7 +161,7 @@
             // 
             // quantum
             // 
-            this.quantum.Location = new System.Drawing.Point(100, 161);
+            this.quantum.Location = new System.Drawing.Point(100, 141);
             this.quantum.Name = "quantum";
             this.quantum.Size = new System.Drawing.Size(268, 29);
             this.quantum.TabIndex = 4;
@@ -155,7 +169,7 @@
             // 
             // roundRobin
             // 
-            this.roundRobin.Location = new System.Drawing.Point(5, 196);
+            this.roundRobin.Location = new System.Drawing.Point(5, 176);
             this.roundRobin.Name = "roundRobin";
             this.roundRobin.Size = new System.Drawing.Size(363, 29);
             this.roundRobin.TabIndex = 3;
@@ -193,35 +207,62 @@
             this.fcfs.UseVisualStyleBackColor = true;
             this.fcfs.Click += new System.EventHandler(this.fcfs_Click);
             // 
-            // resetButton
+            // dataGridViewResults
             // 
-            this.resetButton.Location = new System.Drawing.Point(14, 131);
-            this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(355, 29);
-            this.resetButton.TabIndex = 14;
-            this.resetButton.Text = "Reset";
-            this.resetButton.UseVisualStyleBackColor = true;
-            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            this.dataGridViewResults.AllowUserToAddRows = false;
+            this.dataGridViewResults.AllowUserToDeleteRows = false;
+            this.dataGridViewResults.AllowUserToResizeColumns = false;
+            this.dataGridViewResults.AllowUserToResizeRows = false;
+            this.dataGridViewResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewResults.Location = new System.Drawing.Point(398, 298);
+            this.dataGridViewResults.Name = "dataGridViewResults";
+            this.dataGridViewResults.Size = new System.Drawing.Size(375, 251);
+            this.dataGridViewResults.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(394, 262);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(207, 24);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Tempo medio di attesa:";
+            // 
+            // textBoxAvg
+            // 
+            this.textBoxAvg.BackColor = System.Drawing.Color.White;
+            this.textBoxAvg.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxAvg.Location = new System.Drawing.Point(608, 259);
+            this.textBoxAvg.Name = "textBoxAvg";
+            this.textBoxAvg.ReadOnly = true;
+            this.textBoxAvg.Size = new System.Drawing.Size(159, 29);
+            this.textBoxAvg.TabIndex = 5;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.textBoxAvg);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dataGridViewResults);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridViewProcess);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "SchedulingAlgorithms";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProcess)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResults)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -242,5 +283,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox quantum;
         private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.DataGridView dataGridViewResults;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxAvg;
     }
 }

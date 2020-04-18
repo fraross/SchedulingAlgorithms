@@ -16,6 +16,7 @@ namespace SchedulingAlgorithms
     public partial class MainForm : Form
     {
         BindingList<Process> processes;
+        BindingList<TimeTable> results;
 
         public MainForm()
         {
@@ -25,9 +26,13 @@ namespace SchedulingAlgorithms
         private void MainForm_Load(object sender, EventArgs e)
         {
             processes = new BindingList<Process>();
+            results = new BindingList<TimeTable>();
 
             var source = new BindingSource(processes, null);
             dataGridViewProcess.DataSource = source;
+
+            var sourceResults = new BindingSource(results, null);
+            dataGridViewResults.DataSource = sourceResults;
 
             priority.DataSource = Enum.GetValues(typeof(PriorityEnum));
             priority.SelectedItem = PriorityEnum.Normal;
@@ -54,36 +59,64 @@ namespace SchedulingAlgorithms
 
         private void fcfs_Click(object sender, EventArgs e)
         {
-            var list = FCFS.fromList(processes.ToList());
-            MessageBox.Show(FCFS.toString(list) + "\n\nTempo medio di attesa: " + calcoloMedia(list));
+            if(processes.Count > 0)
+            {
+                var res = FCFS.fromList(processes.ToList());
+
+                results.Clear();
+                res.ForEach(x => results.Add(x));
+
+                textBoxAvg.Text = calcoloMedia(results);
+            }
         }
 
         private void sjf_Click(object sender, EventArgs e)
         {
-            var list = SJF.fromList(processes.ToList());
-            MessageBox.Show(SJF.toString(list) + "\n\nTempo medio di attesa: " + calcoloMedia(list));
+            if (processes.Count > 0)
+            {
+                var res = SJF.fromList(processes.ToList());
+
+                results.Clear();
+                res.ForEach(x => results.Add(x));
+
+                textBoxAvg.Text = calcoloMedia(results);
+            }
         }
 
         private void priorityButton_Click(object sender, EventArgs e)
         {
-            var list = Priority.fromList(processes.ToList());
-            MessageBox.Show(Priority.toString(list) + "\n\nTempo medio di attesa: " + calcoloMedia(list));
+            if (processes.Count > 0)
+            {
+                var res = Priority.fromList(processes.ToList());
+
+                results.Clear();
+                res.ForEach(x => results.Add(x));
+
+                textBoxAvg.Text = calcoloMedia(results);
+            }
         }
 
         private void roundRobin_Click(object sender, EventArgs e)
         {
-            int quantum;
-
-            if (int.TryParse(this.quantum.Text, out quantum))
+            if (processes.Count > 0)
             {
-                var list = RoundRobin.fromList(processes.ToList(), quantum);
-                MessageBox.Show(RoundRobin.toString(list) + "\n\nTempo medio di attesa: " + calcoloMedia(list));
+                int quantum;
+
+                if (int.TryParse(this.quantum.Text, out quantum))
+                {
+                    var res = RoundRobin.fromList(processes.ToList(), quantum);
+
+                    results.Clear();
+                    res.ForEach(x => results.Add(x));
+
+                    textBoxAvg.Text = calcoloMedia(results);
+                }
+                else
+                    MessageBox.Show("Parameter missing");
             }
-            else
-                MessageBox.Show("Parameter missing");
         }
 
-        private string calcoloMedia(List<TimeTable> timeTables)
+        private string calcoloMedia(BindingList<TimeTable> timeTables)
         {
             return timeTables.Average(x => x.ProcessWaitingTime).ToString();
         }

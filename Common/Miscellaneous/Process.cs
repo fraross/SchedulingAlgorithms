@@ -39,7 +39,7 @@ namespace SchedulingAlgorithms.Miscellaneous
 
         public override string ToString()
         {
-            return string.Format("{0} | Burst: {1} | Priorità: {2}", this._processNumber, this._processNumber, this._priority);
+            return string.Format("{0}", this._processNumber);
         }
     }
 }

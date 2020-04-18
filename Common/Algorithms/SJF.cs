@@ -19,13 +19,13 @@ namespace SchedulingAlgorithms.Algorithms
             for (int i = 0; i < process.Count; i++)
                 rt[i] = process[i].CpuBurst;
 
-            int complete = 0, t = 0, minm = int.MaxValue;
-            int shortest = 0, finish_time;
+            int completedProcess = 0, t = 0, minimumTime = int.MaxValue;
+            int shortestProcess = 0, finishTime;
             bool check = false;
 
             // Process until all processes gets 
             // completed 
-            while (complete != process.Count)
+            while (completedProcess != process.Count)
             {
 
                 // Find process with minimum 
@@ -35,10 +35,10 @@ namespace SchedulingAlgorithms.Algorithms
                 for (int j = 0; j < process.Count; j++)
                 {
                     if ((0 <= t) &&
-                    (rt[j] < minm) && rt[j] > 0)
+                    (rt[j] < minimumTime) && rt[j] > 0)
                     {
-                        minm = rt[j];
-                        shortest = j;
+                        minimumTime = rt[j];
+                        shortestProcess = j;
                         check = true;
                     }
                 }
@@ -50,35 +50,35 @@ namespace SchedulingAlgorithms.Algorithms
                 }
 
                 // Reduce remaining time by one 
-                rt[shortest]--;
+                rt[shortestProcess]--;
 
                 // Update minimum 
-                minm = rt[shortest];
-                if (minm == 0)
-                    minm = int.MaxValue;
+                minimumTime = rt[shortestProcess];
+                if (minimumTime == 0)
+                    minimumTime = int.MaxValue;
 
                 // If a process gets completely 
                 // executed 
-                if (rt[shortest] == 0)
+                if (rt[shortestProcess] == 0)
                 {
 
                     // Increment complete 
-                    complete++;
+                    completedProcess++;
                     check = false;
 
                     // Find finish time of current 
                     // process 
-                    finish_time = t + 1;
+                    finishTime = t + 1;
 
                     // Calculate waiting time
-                    int waitTime = finish_time - process[shortest].CpuBurst;
+                    int waitTime = finishTime - process[shortestProcess].CpuBurst;
 
                     // Calculate Turn Around Time
 
-                    timeTables[shortest] = new TimeTable(process[shortest], waitTime, 0);
+                    timeTables[shortestProcess] = new TimeTable(process[shortestProcess], waitTime, 0);
 
-                    if (timeTables[shortest].ProcessWaitingTime < 0)
-                        timeTables[shortest].ProcessWaitingTime = 0;
+                    if (timeTables[shortestProcess].ProcessWaitingTime < 0)
+                        timeTables[shortestProcess].ProcessWaitingTime = 0;
                 }
                 // Increment time 
                 t++;
