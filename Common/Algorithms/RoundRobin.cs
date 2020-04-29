@@ -11,73 +11,38 @@ namespace SchedulingAlgorithms.Algorithms
     {
         static List<TimeTable> Execute(List<Process> processes, int quantum)
         {
-            // Make a copy of burst times bt[] to  
-            // store remaining burst times. 
             int[] remaininBursts = new int[processes.Count];
             TimeTable[] timeTables = new TimeTable[processes.Count];
 
             for (int i = 0; i < processes.Count; i++)
                 remaininBursts[i] = processes[i].CpuBurst;
 
-            int t = 0; // Current time 
+            int t = 0;
 
-            // Keep traversing processes in round 
-            // robin manner until all of them are 
-            // not done. 
             while (true)
             {
                 bool done = true;
 
-                // Traverse all processes one by 
-                // one repeatedly 
                 for (int i = 0; i < processes.Count; i++)
                 {
-                    // If burst time of a process 
-                    // is greater than 0 then only 
-                    // need to process further 
                     if (remaininBursts[i] > 0)
                     {
-
-                        // There is a pending process 
                         done = false;
 
                         if (remaininBursts[i] > quantum)
                         {
-                            // Increase the value of t i.e. 
-                            // shows how much time a process 
-                            // has been processed 
-                            t += quantum;
-
-                            // Decrease the burst_time of  
-                            // current process by quantum 
+                            t += quantum; 
                             remaininBursts[i] -= quantum;
                         }
-
-                        // If burst time is smaller than 
-                        // or equal to quantum. Last cycle 
-                        // for this process 
                         else
                         {
-
-                            // Increase the value of t i.e. 
-                            // shows how much time a process 
-                            // has been processed 
                             t = t + remaininBursts[i];
-
-                            // Waiting time is current 
-                            // time minus time used by  
-                            // this process 
                             timeTables[i] = new TimeTable(processes[i], t - processes[i].CpuBurst, 0);
-
-                            // As the process gets fully  
-                            // executed make its remaining 
-                            // burst time = 0 
                             remaininBursts[i] = 0;
                         }
                     }
                 }
-
-                // If all processes are done 
+ 
                 if (done == true)
                     break;
             }
