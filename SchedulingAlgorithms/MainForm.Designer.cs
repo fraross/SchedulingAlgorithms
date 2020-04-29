@@ -88,7 +88,7 @@
             this.resetButton.TabIndex = 14;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
-            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            this.resetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
             // addProcess
             // 
@@ -98,7 +98,7 @@
             this.addProcess.TabIndex = 13;
             this.addProcess.Text = "Aggiungi";
             this.addProcess.UseVisualStyleBackColor = true;
-            this.addProcess.Click += new System.EventHandler(this.addProcess_Click);
+            this.addProcess.Click += new System.EventHandler(this.AddProcess_Click);
             // 
             // label4
             // 
@@ -175,7 +175,7 @@
             this.roundRobin.TabIndex = 3;
             this.roundRobin.Text = "Round Robin";
             this.roundRobin.UseVisualStyleBackColor = true;
-            this.roundRobin.Click += new System.EventHandler(this.roundRobin_Click);
+            this.roundRobin.Click += new System.EventHandler(this.RoundRobin_Click);
             // 
             // priorityButton
             // 
@@ -185,7 +185,7 @@
             this.priorityButton.TabIndex = 2;
             this.priorityButton.Text = "Priority";
             this.priorityButton.UseVisualStyleBackColor = true;
-            this.priorityButton.Click += new System.EventHandler(this.priorityButton_Click);
+            this.priorityButton.Click += new System.EventHandler(this.Priority_Click);
             // 
             // sjf
             // 
@@ -195,7 +195,7 @@
             this.sjf.TabIndex = 1;
             this.sjf.Text = "SJF";
             this.sjf.UseVisualStyleBackColor = true;
-            this.sjf.Click += new System.EventHandler(this.sjf_Click);
+            this.sjf.Click += new System.EventHandler(this.SJF_Click);
             // 
             // fcfs
             // 
@@ -205,7 +205,7 @@
             this.fcfs.TabIndex = 0;
             this.fcfs.Text = "FCFS";
             this.fcfs.UseVisualStyleBackColor = true;
-            this.fcfs.Click += new System.EventHandler(this.fcfs_Click);
+            this.fcfs.Click += new System.EventHandler(this.FCFS_Click);
             // 
             // dataGridViewResults
             // 

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 using SchedulingAlgorithms.Algorithms;
 using SchedulingAlgorithms.Miscellaneous;
@@ -36,6 +32,20 @@ namespace SchedulingAlgorithms
 
             priority.DataSource = Enum.GetValues(typeof(PriorityEnum));
             priority.SelectedItem = PriorityEnum.Normal;
+
+
+
+            if (File.Exists("processi.txt"))
+            {
+                StreamReader streamReader = new StreamReader("processi.txt");
+
+                while (!streamReader.EndOfStream)
+                {
+                    string[] line = streamReader.ReadLine().Split(' ');
+                    int i = 1;
+                    processes.Add(new Process(i, int.Parse(line[0]), (PriorityEnum)int.Parse(line[1])));
+                }
+            }
         }
 
         private void SanitizeInput(object sender, EventArgs e)
@@ -47,7 +57,7 @@ namespace SchedulingAlgorithms
             }
         }
 
-        private void addProcess_Click(object sender, EventArgs e)
+        private void AddProcess_Click(object sender, EventArgs e)
         {
             if(!string.IsNullOrWhiteSpace(cpuBurst.Text))
             {
@@ -57,7 +67,7 @@ namespace SchedulingAlgorithms
             }
         }
 
-        private void fcfs_Click(object sender, EventArgs e)
+        private void FCFS_Click(object sender, EventArgs e)
         {
             if(processes.Count > 0)
             {
@@ -66,11 +76,11 @@ namespace SchedulingAlgorithms
                 results.Clear();
                 res.ForEach(x => results.Add(x));
 
-                textBoxAvg.Text = calcoloMedia(results);
+                textBoxAvg.Text = CalcoloMedia(results);
             }
         }
 
-        private void sjf_Click(object sender, EventArgs e)
+        private void SJF_Click(object sender, EventArgs e)
         {
             if (processes.Count > 0)
             {
@@ -79,11 +89,11 @@ namespace SchedulingAlgorithms
                 results.Clear();
                 res.ForEach(x => results.Add(x));
 
-                textBoxAvg.Text = calcoloMedia(results);
+                textBoxAvg.Text = CalcoloMedia(results);
             }
         }
 
-        private void priorityButton_Click(object sender, EventArgs e)
+        private void Priority_Click(object sender, EventArgs e)
         {
             if (processes.Count > 0)
             {
@@ -92,11 +102,11 @@ namespace SchedulingAlgorithms
                 results.Clear();
                 res.ForEach(x => results.Add(x));
 
-                textBoxAvg.Text = calcoloMedia(results);
+                textBoxAvg.Text = CalcoloMedia(results);
             }
         }
 
-        private void roundRobin_Click(object sender, EventArgs e)
+        private void RoundRobin_Click(object sender, EventArgs e)
         {
             if (processes.Count > 0)
             {
@@ -109,19 +119,19 @@ namespace SchedulingAlgorithms
                     results.Clear();
                     res.ForEach(x => results.Add(x));
 
-                    textBoxAvg.Text = calcoloMedia(results);
+                    textBoxAvg.Text = CalcoloMedia(results);
                 }
                 else
                     MessageBox.Show("Parameter missing");
             }
         }
 
-        private string calcoloMedia(BindingList<TimeTable> timeTables)
+        private string CalcoloMedia(BindingList<TimeTable> timeTables)
         {
             return timeTables.Average(x => x.ProcessWaitingTime).ToString();
         }
 
-        private void resetButton_Click(object sender, EventArgs e)
+        private void ResetButton_Click(object sender, EventArgs e)
         {
             processes.Clear();
         }
