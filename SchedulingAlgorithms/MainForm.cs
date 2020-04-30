@@ -31,19 +31,20 @@ namespace SchedulingAlgorithms
             dataGridViewResults.DataSource = sourceResults;
 
             priority.DataSource = Enum.GetValues(typeof(PriorityEnum));
-            priority.SelectedItem = PriorityEnum.Normal;
+            priority.SelectedItem = PriorityEnum.Priority1;
 
 
 
             if (File.Exists("processi.txt"))
             {
                 StreamReader streamReader = new StreamReader("processi.txt");
+                int i = 1;
 
                 while (!streamReader.EndOfStream)
                 {
                     string[] line = streamReader.ReadLine().Split(' ');
-                    int i = 1;
                     processes.Add(new Process(i, int.Parse(line[0]), (PriorityEnum)int.Parse(line[1])));
+                    i++;
                 }
             }
         }

@@ -14,7 +14,7 @@ namespace SchedulingAlgorithms.Miscellaneous
         {
             this._processNumber = processNumber;
             this._cpuBurst = cpuBurst;
-            this._priority = PriorityEnum.Normal;
+            this._priority = PriorityEnum.Priority1;
         }
 
         //Priority
@@ -30,7 +30,7 @@ namespace SchedulingAlgorithms.Miscellaneous
         {
             this._processNumber = processNumber;
             this._cpuBurst = cpuBurst;
-            this._priority = PriorityEnum.Normal;
+            this._priority = PriorityEnum.Priority1;
         }
 
         public int ProcessNumber { get { return this._processNumber; } }
